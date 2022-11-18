@@ -1,6 +1,5 @@
 import Search from "./Search";
 import AddTodo from "./AddTodo";
-import {Todo} from "./TodoType";
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import TodoList from "./TodoList";
@@ -32,6 +31,8 @@ export default function TodoApp(){
 
     return(
         <div>
+
+
             <AddTodo text={addDescription} addElement={addElement}/>
             <Search searchText={searchText} searchElement={searchElement}/>
             <TodoList todos={todoList}/>

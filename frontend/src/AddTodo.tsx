@@ -13,11 +13,6 @@ export default function AddTodo(props: AddTodoProps){
     const [newTodo, setNewTodo] = useState("");
 
 
-
-    const addNewTodo = (text: string)=>(
-        setNewTodo(newTodo.concat(text)));
-
-
     const userTextSave = (event: ChangeEvent<HTMLInputElement>) => {
 
         setNewTodo(event.target.value);
