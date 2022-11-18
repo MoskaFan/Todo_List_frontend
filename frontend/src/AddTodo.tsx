@@ -1,4 +1,4 @@
-import {Todo} from './TodoType'
+
 import {ChangeEvent, useState} from "react";
 
 type AddTodoProps = {
