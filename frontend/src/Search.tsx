@@ -20,14 +20,14 @@ export default function Search(props: SearchProps){
 
         setSearchText(event.target.value);
     }
-}
+
 
 
 
     return(
         <div>
-            <input value={filteredList} name = {searchText} onChange={onSearchTextChange}/><br />
-            <input type={radio} />Show completed todos<br />
+            <input value={searchText} name = {searchText} onChange={onSearchTextChange}/><br />
+            <input type={"radio"} />Show completed todos<br />
         </div>
     )
 }
