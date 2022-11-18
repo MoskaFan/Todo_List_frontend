@@ -1,17 +1,15 @@
 import Search from "./Search";
 import AddTodo from "./AddTodo";
-import Todo from "./Todo";
+import {Todo} from "./TodoType";
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import TodoList from "./TodoList";
-type TodoAppProps = {
-    todo: Todo,
-    todos: Todo[],
 
-}
-export default function TodoApp(props: TodoAppProps){
+export default function TodoApp(){
 
     const [todoList, setTodoList] = useState([]);
+    const [searchText, setSearchText] = useState<string>("");
+    const [addDescription, setAddDescription] = useState<string>("");
 
     useEffect(()=>{
         getTodoList()
@@ -22,13 +20,21 @@ export default function TodoApp(props: TodoAppProps){
             .then((response)=>{
             setTodoList(response.data)})
     }
-    const addElement = todoList.map((todo: Todo) => {
-        return <AddTodo addElement={addElement} />
-    })
+
+    function addElement(description: string){
+
+        setAddDescription(addDescription)
+    }
+    function searchElement(searchText: string){
+        setSearchText(searchText)
+    }
+
 
     return(
         <div>
-            {addElement}
+            <AddTodo text={addDescription} addElement={addElement}/>
+            <Search searchText={searchText} searchElement={searchElement}/>
+            <TodoList todos={todoList}/>
         </div>
     )
 }

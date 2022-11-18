@@ -2,32 +2,36 @@ import {ChangeEvent, useState} from "react";
 import {Todo} from './TodoType';
 
 type SearchProps = {
-  todos: Todo[]
+    searchText: string,
+    searchElement (searchText: string): void
 }
 export default function Search(props: SearchProps){
 
     const[searchText, setSearchText] = useState("");
-    const filterList = props.todos.filter((element)=>{
-        if(element.description.includes(searchText)){
-            return true;
+    const[todos, setTodos] = useState<Todo[]>([]);
+
+    const filterList = todos.filter((todo: Todo)=>{
+        if(todo.description.toLowerCase().includes(searchText.toLowerCase())){
+            return true
         }
-        return false;
+        return false
     })
 
 
 
     const onSearchTextChange = (event: ChangeEvent<HTMLInputElement>) => {
 
-        setSearchText(event.target.value);
+        props.searchElement(event.target.value);
     }
+
 
 
 
 
     return(
         <div>
-            <input value={searchText} name = {searchText} onChange={onSearchTextChange}/><br />
-            <input type={"radio"} />Show completed todos<br />
+            <input onChange={onSearchTextChange}/>
+
         </div>
     )
 }
