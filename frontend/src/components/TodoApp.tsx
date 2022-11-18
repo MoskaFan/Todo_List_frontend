@@ -18,6 +18,7 @@ export default function TodoApp(){
         axios.get("/api/todo")
             .then((response)=>{
             setTodoList(response.data)})
+            .catch(console.error)
     }
 
     function addElement(description: string){
