@@ -3,8 +3,13 @@ import AddTodo from "./AddTodo";
 import Todo from "./Todo";
 import React, {useEffect, useState} from "react";
 import axios from "axios";
+import TodoList from "./TodoList";
+type TodoAppProps = {
+    todo: Todo,
+    todos: Todo[],
 
-export default function TodoApp(){
+}
+export default function TodoApp(props: TodoAppProps){
 
     const [todoList, setTodoList] = useState([]);
 
@@ -17,10 +22,13 @@ export default function TodoApp(){
             .then((response)=>{
             setTodoList(response.data)})
     }
+    const addElement = todoList.map((todo: Todo) => {
+        return <AddTodo addElement={addElement} />
+    })
 
     return(
         <div>
-            <pre><TodoApp></TodoApp></pre>
+            {addElement}
         </div>
     )
 }
