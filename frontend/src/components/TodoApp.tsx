@@ -3,12 +3,14 @@ import AddTodo from "./AddTodo";
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import TodoList from "./TodoList";
+import {Todo} from "./TodoType";
+import "./TodoApp.css";
 
 export default function TodoApp(){
 
-    const [todoList, setTodoList] = useState([]);
+    const [todoList, setTodoList] = useState<Todo[]>([]);
     const [searchText, setSearchText] = useState<string>("");
-    const [addDescription, setAddDescription] = useState<string>("");
+
 
     useEffect(()=>{
         getTodoList()
@@ -21,22 +23,36 @@ export default function TodoApp(){
             .catch(console.error)
     }
 
-    function addElement(description: string){
+    function addTask(newTodo: Todo) {
+        axios.post("/api/todo", newTodo)
+            .then(savedTodo => {
+                setTodoList((prevTodoList) => {
+                    return [...prevTodoList, savedTodo.data]
+                })
 
-        setAddDescription(addDescription)
+            })
     }
-    function searchElement(searchText: string){
-        setSearchText(searchText)
+
+    function getOneTask(id: string){
+        axios.get("/api/todo/" + id)
+            .then((response)=>{
+                setTodoList(response.data)})
+            .catch(console.error)
     }
+
+    const filteredTodos = todoList.filter((todo: Todo) =>
+        todo.description.toLowerCase().includes(searchText.toLowerCase()))
 
 
     return(
-        <div>
+        <div className={"todo-form"}>
+
+            <div><h1>Todo Liste</h1></div>
+            <div><Search searchText={searchText} searchElement={getOneTask}/></div>
+            <div><TodoList  todos={todoList} /></div>
+            <div><AddTodo addElement={addTask}/></div>
 
 
-            <AddTodo text={addDescription} addElement={addElement}/>
-            <Search searchText={searchText} searchElement={searchElement}/>
-            <TodoList todos={todoList}/>
         </div>
     )
 }

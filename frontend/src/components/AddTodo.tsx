@@ -1,33 +1,38 @@
 
 import {ChangeEvent, useState} from "react";
+import {Todo} from "./TodoType";
 
 type AddTodoProps = {
-    text: string,
-    addElement(description: string): void
+
+    addElement(description: Todo): void
 }
-//ein event das jedes Mal die Todo-Beschreibung aktualisiert
-// ein event das gefeuert wird, wenn tatsächlich addTodo aufgerufen wird
+
 export default function AddTodo(props: AddTodoProps){
 
 
-    const [newTodo, setNewTodo] = useState("");
+    const [todoDescription, setTodoDescription] = useState("");
 
 
     const userTextSave = (event: ChangeEvent<HTMLInputElement>) => {
 
-        setNewTodo(event.target.value);
+        setTodoDescription(event.target.value);
     }
 
     function addElement(){
-        props.addElement(props.text)
+        const newTodo: Todo = {
+            description: todoDescription,
+            status: "OPEN"
+        }
+        props.addElement(newTodo)
     }
 
 
 
     return(
         <div>
-            <input value={newTodo} onChange={userTextSave}/>
-            <button onClick={addElement}></button>
+            <label><h4>Add your new Todo</h4></label>
+            <input className={"addTodo-input"} onChange={userTextSave}/>
+            <button onClick={addElement}>Add</button>
         </div>
     )
 }

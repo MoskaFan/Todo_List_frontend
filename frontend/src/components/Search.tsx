@@ -15,8 +15,9 @@ export default function Search(props: SearchProps){
 
 
     return(
-        <div>
-            <input onChange={onSearchTextChange}/>
+        <div className={"todo-search"}>
+            <input className={"todo-search-input"} onChange={onSearchTextChange}/> <h4>Search your Todo</h4>
+
 
         </div>
     )
