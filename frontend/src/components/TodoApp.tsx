@@ -73,10 +73,10 @@ export default function TodoApp(){
     return(
         <section className={"todo-form"}>
 
-            <div><h1>Todo Liste</h1></div>
-            <div><Search searchText={searchText} searchElement={getOneTask}/></div>
-            <div><TodoList  todos={todoList} deleteTodo={deleteTodo} editTodo={editTodo}/></div>
-            <div><AddTodo addElement={addTask}/></div>
+            <h1>Todo Liste</h1>
+            <Search searchText={searchText} searchElement={getOneTask}/>
+            <TodoList  todos={todoList} deleteTodo={deleteTodo} editTodo={editTodo}/>
+            <AddTodo addElement={addTask}/>
         </section>
     )
 }

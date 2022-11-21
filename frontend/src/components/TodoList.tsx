@@ -20,7 +20,7 @@ type TodoListProps = {
         <section>
             <div>{todoList}</div>
 
-            <button>Show all tasks</button><br />
+            <button>Show all tasks</button>
 
         </section>
     )
