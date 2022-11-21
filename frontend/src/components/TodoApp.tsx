@@ -71,12 +71,12 @@ export default function TodoApp(){
 
 
     return(
-        <div className={"todo-form"}>
+        <section className={"todo-form"}>
 
             <div><h1>Todo Liste</h1></div>
             <div><Search searchText={searchText} searchElement={getOneTask}/></div>
             <div><TodoList  todos={todoList} deleteTodo={deleteTodo} editTodo={editTodo}/></div>
             <div><AddTodo addElement={addTask}/></div>
-        </div>
+        </section>
     )
 }

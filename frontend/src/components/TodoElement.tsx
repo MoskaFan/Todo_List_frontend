@@ -18,11 +18,11 @@
     }
 
     return(
-        <div className={"todo-element"}>
+        <section className={"todo-element"}>
             <input onChange={editTodo} type={"radio"}/>
             <input value={props.todoElement.description} className={"todo-description"}/>
             <button onClick={deleteTodo} className={"todo-button-delete"}>Delete</button>
             <button onClick={editTodo} className={"todo-button-edit"}>Edit</button>
-        </div>
+        </section>
     )
 }

@@ -15,10 +15,10 @@ export default function Search(props: SearchProps){
 
 
     return(
-        <div className={"todo-search"}>
+        <section className={"todo-search"}>
             <input className={"todo-search-input"} onChange={onSearchTextChange}/> <h4>Search your Todo</h4>
 
 
-        </div>
+        </section>
     )
 }

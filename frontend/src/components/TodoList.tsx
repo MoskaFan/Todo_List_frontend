@@ -17,11 +17,11 @@ type TodoListProps = {
     })
 
     return(
-        <div>
+        <section>
             <div>{todoList}</div>
 
             <button>Show all tasks</button><br />
 
-        </div>
+        </section>
     )
 }
