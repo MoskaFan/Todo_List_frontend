@@ -5,7 +5,7 @@ type TodoListProps = {
 
     todos: Todo[],
     deleteTodo(id: string): void,
-    editTodo(id: string): void
+    editTodo(todo: Todo, id: string): void
 }
 
     export default function TodoList(props: TodoListProps){
