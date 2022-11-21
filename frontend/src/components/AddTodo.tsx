@@ -10,10 +10,10 @@ type AddTodoProps = {
 export default function AddTodo(props: AddTodoProps){
 
 
-    const [todoDescription, setTodoDescription] = useState("");
+    const [todoDescription, setTodoDescription] = useState<string>("");
 
 
-    const userTextSave = (event: ChangeEvent<HTMLInputElement>) => {
+    function userTextSave (event: ChangeEvent<HTMLInputElement>) {
 
         setTodoDescription(event.target.value);
     }
@@ -29,10 +29,10 @@ export default function AddTodo(props: AddTodoProps){
 
 
     return(
-        <div>
-            <label><h4>Add your new Todo</h4></label>
+        <section>
+            <h4>Add your new Todo</h4>
             <input className={"addTodo-input"} onChange={userTextSave}/>
             <button onClick={addElement}>Add</button>
-        </div>
+        </section>
     )
 }

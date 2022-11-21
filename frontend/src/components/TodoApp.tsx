@@ -6,6 +6,7 @@ import TodoList from "./TodoList";
 import {Todo} from "./TodoType";
 import "./TodoApp.css";
 
+
 export default function TodoApp(){
 
     const [todoList, setTodoList] = useState<Todo[]>([]);
@@ -34,11 +35,36 @@ export default function TodoApp(){
     }
 
     function getOneTask(id: string){
-        axios.get("/api/todo/" + id)
-            .then((response)=>{
-                setTodoList(response.data)})
-            .catch(console.error)
+        setSearchText(searchText)
     }
+
+    function deleteTodo(deletedIdTodo: string){
+        axios.delete("/api/todo/" + deletedIdTodo).then(()=>{
+            const newList = todoList.filter((todo: Todo)=>
+                todo.id!==deletedIdTodo)
+            setTodoList(newList)
+            }
+        )
+    }
+
+    function editTodo(newTodo: Todo, id: string){
+        axios.put("/api/todo/" + newTodo, id)
+            .then((updatedTodoResponse)=>{
+                setTodoList((prevState) => {
+                    const updatedTodo: Todo = updatedTodoResponse.data
+                        return prevState.map((todo: Todo)=>{
+                            if(todo.id === updatedTodo.id){
+                                return updatedTodo
+                            }else{
+                                return todo
+                            }
+                        })
+                })
+            })
+    }
+
+
+
 
     const filteredTodos = todoList.filter((todo: Todo) =>
         todo.description.toLowerCase().includes(searchText.toLowerCase()))
@@ -49,10 +75,8 @@ export default function TodoApp(){
 
             <div><h1>Todo Liste</h1></div>
             <div><Search searchText={searchText} searchElement={getOneTask}/></div>
-            <div><TodoList  todos={todoList} /></div>
+            <div><TodoList  todos={todoList} deleteTodo={deleteTodo} editTodo={editTodo}/></div>
             <div><AddTodo addElement={addTask}/></div>
-
-
         </div>
     )
 }
